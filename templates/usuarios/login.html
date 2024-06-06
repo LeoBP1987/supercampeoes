@@ -1,0 +1,21 @@
+{% extends 'partials/base_index.html' %}
+{% load static %}
+{% block content %}
+        <section class="galeria">
+            <h1 class="galeria-titulo">Login</h1>
+            <div class="formulario-cadastro">
+                <div class="cadastro__campo">
+                    <label class="cadastro__label" for="senha">Login:</label>
+                    <input class="cadastro__input" id="senha" type="text" placeholder="Digite seu login">
+                </div>
+                <div class="cadastro__campo">
+                    <label class="cadastro__label" for="confirmacao">Senha:</label>
+                    <input class="cadastro__input" id="confirmacao" type="text" placeholder="Digite sua senha">
+                </div>
+                <div class="cadastro__botoes">
+                    <a class="link__botoes_botao" href="logado.html"><button class="botoes__botao" type="submit">Enviar</button></a>
+                    <button class="botoes__botao" type="submit" style="background-color:crimson;">Cancelar</button>
+                </div>
+            </div>
+        </section>
+{% endblock %}

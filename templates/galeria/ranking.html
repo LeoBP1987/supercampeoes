@@ -1,0 +1,33 @@
+{% extends 'partials/base_index.html' %}
+{% load static %}
+{% block content %}
+        <section class="galeria">
+            <img class="galeria-banner" src="{% static 'assets/imagens/banner_futebol.png' %}" alt="Banner da página">
+            <h1 class="galeria-titulo">Galeria de Rankings</h1>
+            <ul class="galeria-cards">
+                <li>
+                    <a class="rk-cards__card" href="ranking_geral.html">
+                        <img class="rk-card__simbolo" src="{% static 'assets/imagens/galeria/ranking/ranking_geral.jpg' %}" alt="Imagem capa Ranking Geral">
+                        <h2 class="rk-card__titulo">Ranking Geral</h2>
+                    </a>
+                </li>
+                <li>
+                    <a class="rk-cards__card" href="ranking_nacional.html">
+                        <img class="rk-card__simbolo" src="{% static 'assets/imagens/galeria/ranking/ranking_nacional.jpg' %}" alt="Imagem capa Ranking Nacional">
+                        <h2 class="rk-card__titulo">Ranking Nacional</h2>
+                    </a>
+                </li>
+                <li>
+                    <a class="rk-cards__card" href="ranking_continental.html">
+                        <img class="rk-card__simbolo" src="{% static 'assets/imagens/galeria/ranking/ranking_continental.jpg' %}" alt="Imagem capa Ranking Continental">
+                        <h2 class="rk-card__titulo">Ranking Continental</h2>
+                    </a>
+                </li>
+                <li>
+                    <a class="rk-cards__card" href="ranking_mundial.html">
+                        <img class="rk-card__simbolo" src="{% static 'assets/imagens/galeria/ranking/ranking_mundial.jpg' %}" alt="Imagem capa Ranking Mundial">
+                        <h2 class="rk-card__titulo">Ranking Mundial</h2>
+                    </a>
+                </li>
+        </section>
+{% endblock %}

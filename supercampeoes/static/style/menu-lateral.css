@@ -1,0 +1,35 @@
+@import url('style.css');
+
+.menu-lateral {
+    display: flex;
+    flex-direction: column;
+    margin: 0 2rem 2rem 0.5rem;
+    gap: 3.5rem;
+}
+
+.item__link,
+.item__link:visited {
+    color: var(--cor-fonte-primaria);
+    text-decoration: none;
+    display: flex;
+    gap: 1rem;
+    align-items: end;
+    justify-content: flex-start;
+}
+
+.item__imagem {
+    width: 40px;
+    align-self: flex-start;
+    transition: transform 0.1s;
+}
+
+.item__imagem:hover {
+    transform: scale(1.2);
+}
+
+.item__titulo {
+    font-family: var(--fonte-primaria);
+    color: var(--cor-fonte-primaria);
+    font-size: 2.5rem;
+    font-weight: bold;
+}

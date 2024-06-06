@@ -1,0 +1,17 @@
+{% extends 'partials/base_index.html' %}
+{% load static %}
+{% block content %}
+        <section class="galeria">
+            <img class="galeria-banner" src="{% static 'assets/imagens/banner_futebol.png' %}" alt="Banner da página">
+            <h1 class="galeria-titulo">Galeria de Times</h1>
+            <ul class="galeria-cards">
+                <li>
+                    <a class="cards__card" href="{% url 'times' %}">
+                        <img class="card__simbolo" src="{% static 'assets/imagens/galeria/times/logo-palmeiras.png' %}" alt="Simbolo do Palmeiras">
+                        <h2 class="card__titulo">Palmeiras</h2>
+                        <p class="card__texto">São Paulo</p>
+                    </a>
+                </li>
+            </ul>
+        </section>
+{% endblock %}

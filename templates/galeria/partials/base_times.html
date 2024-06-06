@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <link rel="stylesheet" href="{% static 'style/header.css' %}">
+    <link rel="stylesheet" href="{% static 'style/menu-lateral.css' %}">
+    <link rel="stylesheet" href="{% static 'style/galeria.css' %}">
+    <link rel="stylesheet" href="{% static 'style/footer.css' %}">
+    <title>Super Campeões</title>
+</head>
+<body>
+    <section class="times">
+        <section class="header">
+            <img class="header-logo" src="{% static 'assets/logo/logo.png' %}" alt="Imagem do logo do site">
+        </section>
+        <section class="menu-lateral">
+            <div class="menu-lateral__item">
+                <a class="item__link" href="{% url 'index' %}">
+                    <img class="item__imagem" src="{% static 'assets/icone/bola.png' %}" alt="Icone de Bola">
+                    <h2 class="item__tituto">Home</h2>
+                </a>
+            </div>
+            <div class="menu-lateral__item">
+                <a class="item__link" href="times.html">
+                    <img class="item__imagem" src="{% static 'assets/icone/campo-de-futebol.png' %}" alt="Icone de Campo de Futebol">
+                    <h2 class="item__tituto">Histórico</h2>
+                </a>
+            </div>
+            <div class="menu-lateral__item">
+                <a class="item__link" href="times_titulos.html">
+                    <img class="item__imagem" src="{% static 'assets/icone/trofeu.png' %}" alt="Icone de Troféu">
+                    <h2 class="item__tituto">Titulos</h2>
+                </a>
+            </div>
+            <div class="menu-lateral__item">
+                <a class="item__link" href="times_posicoes.html">
+                    <img class="item__imagem" src="{% static 'assets/icone/classificacao.png' %}" alt="Icone de Pódio">
+                    <h2 class="item__tituto">Posição nos Rankings</h2>
+                </a>
+            </div>
+        </section>
+        {% block content %} {% endblock %}
+        {% include 'partials/_footer.html' %}
+    </section>
+</body>
+</html>
