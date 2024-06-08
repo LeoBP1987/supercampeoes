@@ -14,7 +14,17 @@
 <body>
     <section class="principal">
         <section class="header">
-            <img class="header-logo" src="{% static 'assets/logo/logo.png' %}" alt="Imagem do logo do site">
+            <div class="header-logo-logado">
+                {% if user.is_authenticated %}
+                <p class="header-logado">{{user.username}} esta logado</p>
+                {% endif %}        
+                <img class="header-logo" src="{% static 'assets/logo/logo.png' %}" alt="Imagem do logo do site">
+            </div>
+            {% for message in messages %}
+            <div class="alert.error">
+                <p id="messages">{{message}}</p>
+            </div>
+            {% endfor %}
             <div class="header-busca">
                 <input class="busca__pesquisa" type="text" placeholder="O que você deseja procurar?">
                 <img class="busca__fundo" src="{% static 'assets/icone/search.png' %}" alt="Icone de Lupa">
@@ -27,12 +37,34 @@
                     <h2 class="item__tituto">Times</h2>
                 </a>
             </div>
+            {% if user.is_authenticated %}
+            <div class="menu-lateral__item">
+                <a class="item__link" href="{% url 'meus_times' %}">
+                    <img class="item__imagem" src="{% static 'assets/icone/camisa10.png' %}" alt="Icone de Camisa 10">
+                    <h2 class="item__tituto">Meus Times</h2>
+                </a>
+            </div>
+            <div class="menu-lateral__item">
+                <a class="item__link" href="{% url 'campeonatos' %}">
+                    <img class="item__imagem" src="{% static 'assets/icone/campo-de-futebol.png' %}" alt="Icone de Campo de Futebol">
+                    <h2 class="item__tituto">Campeonatos</h2>
+                </a>
+            </div>
+            {% endif %}
             <div class="menu-lateral__item">
                 <a class="item__link" href="{% url 'ranking' %}">
                     <img class="item__imagem" src="{% static 'assets/icone/classificacao.png' %}" alt="Icone de Pódio">
                     <h2 class="item__tituto">Rankings</h2>
                 </a>
             </div>
+            {% if user.is_authenticated %}
+            <div class="menu-lateral__item">
+                <a class="item__link" href="{% url 'logout' %}">
+                    <img class="item__imagem" src="{% static 'assets/icone/chuteira.png' %}" alt="Icone de Chuteira">
+                    <h2 class="item__tituto">Logout</h2>
+                </a>
+            </div>
+            {% else %}
             <div class="menu-lateral__item">
                 <a class="item__link" href="{% url 'cadastro' %}">
                     <img class="item__imagem" src="{% static 'assets/icone/bola.png' %}" alt="Icone de Bola">
@@ -45,6 +77,7 @@
                     <h2 class="item__tituto">Login</h2>
                 </a>
             </div>
+            {% endif %}
         </section>
         {% block content %} {% endblock %}
         {% include 'partials/_footer.html' %}

@@ -3,19 +3,20 @@
 {% block content %}
         <section class="galeria">
             <h1 class="galeria-titulo">Login</h1>
+            <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
             <div class="formulario-cadastro">
+                {% for field in forms.visible_fields %}
                 <div class="cadastro__campo">
-                    <label class="cadastro__label" for="senha">Login:</label>
-                    <input class="cadastro__input" id="senha" type="text" placeholder="Digite seu login">
+                    <label class="cadastro__label" for="id_for_field">{{field.label}}</label>
+                    {{field}}
                 </div>
-                <div class="cadastro__campo">
-                    <label class="cadastro__label" for="confirmacao">Senha:</label>
-                    <input class="cadastro__input" id="confirmacao" type="text" placeholder="Digite sua senha">
-                </div>
+                {% endfor %}
                 <div class="cadastro__botoes">
-                    <a class="link__botoes_botao" href="logado.html"><button class="botoes__botao" type="submit">Enviar</button></a>
+                    <button class="botoes__botao" type="submit">Enviar</button>
                     <button class="botoes__botao" type="submit" style="background-color:crimson;">Cancelar</button>
                 </div>
             </div>
+            </form>
         </section>
 {% endblock %}

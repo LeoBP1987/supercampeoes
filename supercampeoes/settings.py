@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usuarios.apps.UsuariosConfig',
     'galeria.apps.GaleriaConfig',
+    'campeonatos.apps.CampeonatosConfig',
 ]
 
 #Atualizando base de usuarios
@@ -117,6 +118,12 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'supercampeoes/static')]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Media
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
 
 
 # Default primary key field type

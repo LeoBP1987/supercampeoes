@@ -3,35 +3,20 @@
 {% block content %}
         <section class="galeria">
             <h1 class="galeria-titulo">Cadastro de Novos Usuarios</h1>
+            <form action="{% url 'cadastro' %}" method="POST">
+            {% csrf_token %}
             <div class="formulario-cadastro">
+                {% for field in forms.visible_fields %}
                 <div class="cadastro__campo">
-                    <label class="cadastro__label" for="nome">Nome Completo:</label>
-                    <input class="cadastro__input" id="nome" type="text" placeholder="Digite seu Nome Completo">
+                    <label class="cadastro__label" for="id_for_field">{{field.label}}</label>
+                    {{field}}
                 </div>
-                <div class="cadastro__campo">
-                    <label class="cadastro__label" for="email">Email:</label>
-                    <input class="cadastro__input" id="email" type="text" placeholder="Digite seu Email">
-                </div>
-                <div class="cadastro__campo">
-                    <label class="cadastro__label" for="time">Time do Coração:</label>
-                    <input class="cadastro__input" id="time" type="text" placeholder="Digite seu time do coração">
-                </div>
-                <div class="cadastro__campo">
-                    <label class="cadastro__label" for="login">Login:</label>
-                    <input class="cadastro__input" id="login" type="text" placeholder="Digite o Login que deseje usar sem espaços. Ex: joao_silva">
-                </div>
-                <div class="cadastro__campo">
-                    <label class="cadastro__label" for="senha">Senha:</label>
-                    <input class="cadastro__input" id="senha" type="text" placeholder="Digite sua senha">
-                </div>
-                <div class="cadastro__campo">
-                    <label class="cadastro__label" for="confirmacao">Confirmação de Senha:</label>
-                    <input class="cadastro__input" id="confirmacao" type="text" placeholder="Confirme sua senha">
-                </div>
+                {% endfor %}
                 <div class="cadastro__botoes">
                     <button class="botoes__botao" type="submit">Enviar</button>
                     <button class="botoes__botao" type="submit" style="background-color:crimson;">Cancelar</button>
                 </div>
             </div>
+            </form>
         </section>
 {% endblock %}

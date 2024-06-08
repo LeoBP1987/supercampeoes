@@ -36,3 +36,8 @@
     width: 2rem;
     height: 2rem;
 }
+
+.header-logo-logado{
+    display: flex;
+    flex-direction: column;
+}
