@@ -9,7 +9,11 @@
                 {% for time in times %}
                 <li>
                     <a class="cards__card" href="{% url 'times' time.id %}">
-                        <img class="card__simbolo" src="{{time.simbolo.url}}" alt="Simbolo do Time">
+                        {% if time.simbolo %}
+                            <img class="card__simbolo" src="{{time.simbolo.url}}" alt="Simbolo do {{time.nome_curto}}">
+                        {% else %}
+                            <img class="card__simbolo" src="{% static 'assets/imagens/galeria/times/not-found.png' %}" alt="Imagem de Not Found">
+                        {% endif %}
                         <h2 class="card__titulo">{{time.nome_curto}}</h2>
                         <p class="card__texto">{{time.estado}}</p>
                     </a>

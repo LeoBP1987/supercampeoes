@@ -14,98 +14,30 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for campeonato in campeonatos %}
                     <tr>
-                        <td class="campeonatos__tabela__conteudo">Campeonato Brasileiro</td>
-                        <td class="campeonatos__tabela__conteudo">Nacional</td>
-                        <td class="campeonatos__tabela__conteudo">SIM</td>
-                        <td class="campeonatos__tabela__conteudo">50</td>
+                        <td class="campeonatos__tabela__conteudo">{{campeonato.nome_campeonato}}</td>
+                        <td class="campeonatos__tabela__conteudo">{{campeonato.categoria}}</td>
+                        <td class="campeonatos__tabela__conteudo">{{campeonato.principal}}</td>
+                        <td class="campeonatos__tabela__conteudo">{{campeonato.pontuacao}}</td>
+                        {% if campeonato.usuario == request.user %}
                         <td class="campeonatos__tabela__botoes">
+                            <a  class="link__editar__campeonato" href="{% url 'editar_campeonato' campeonato.id %}">
                             <img class="editar__imagem" src="{% static 'assets/icone/var.png' %}" alt="Imagem do VAR">
                             <p class="editar__texto">Edit</p>
+                            </a>
                         </td>
                         <td class="campeonatos__tabela__botoes">
+                            <a  class="link__editar__campeonato" href="{% url 'deletar_campeonato' campeonato.id %}">
                             <img class="deletar__imagem" src="{% static 'assets/icone/apito.png' %}" alt="Imagem de Apito">
                             <p class="deletar__texto">Del</p>
+                            </a>
                         </td>
+                        {% endif %}
                     </tr>
-                    <tr>
-                        <td class="campeonatos__tabela__conteudo">Copa do Brasil</td>
-                        <td class="campeonatos__tabela__conteudo">Nacional</td>
-                        <td class="campeonatos__tabela__conteudo">NÃO</td>
-                        <td class="campeonatos__tabela__conteudo">25</td>
-                    </tr>
-                    <tr>
-                        <td class="campeonatos__tabela__conteudo">Copa dos Campeões</td>
-                        <td class="campeonatos__tabela__conteudo">Nacional</td>
-                        <td class="campeonatos__tabela__conteudo">NÃO</td>
-                        <td class="campeonatos__tabela__conteudo">25</td>
-                    </tr>
-                    <tr>
-                        <td class="campeonatos__tabela__conteudo">Super Copa do Brasil</td>
-                        <td class="campeonatos__tabela__conteudo">Nacional</td>
-                        <td class="campeonatos__tabela__conteudo">NÃO</td>
-                        <td class="campeonatos__tabela__conteudo">25</td>
-                    </tr>
-                    <tr>
-                        <td class="campeonatos__tabela__conteudo">Copa Libertadores das Américas</td>
-                        <td class="campeonatos__tabela__conteudo">Continental</td>
-                        <td class="campeonatos__tabela__conteudo">SIM</td>
-                        <td class="campeonatos__tabela__conteudo">80</td>
-                        <td class="campeonatos__tabela__botoes">
-                            <img class="editar__imagem" src="{% static 'assets/icone/var.png' %}" alt="Imagem do VAR">
-                            <p class="editar__texto">Edit</p>
-                        </td>
-                        <td class="campeonatos__tabela__botoes">
-                            <img class="deletar__imagem" src="{% static 'assets/icone/apito.png' %}" alt="Imagem de Apito">
-                            <p class="deletar__texto">Del</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="campeonatos__tabela__conteudo">Copa Mercosul</td>
-                        <td class="campeonatos__tabela__conteudo">Continental</td>
-                        <td class="campeonatos__tabela__conteudo">NÃO</td>
-                        <td class="campeonatos__tabela__conteudo">40</td>
-                    </tr>
-                    <tr>
-                        <td class="campeonatos__tabela__conteudo">Copa Sulamericana</td>
-                        <td class="campeonatos__tabela__conteudo">Continental</td>
-                        <td class="campeonatos__tabela__conteudo">NÃO</td>
-                        <td class="campeonatos__tabela__conteudo">40</td>
-                    </tr>
-                    <tr>
-                        <td class="campeonatos__tabela__conteudo">Recopa Sulamericana</td>
-                        <td class="campeonatos__tabela__conteudo">Continental</td>
-                        <td class="campeonatos__tabela__conteudo">NÃO</td>
-                        <td class="campeonatos__tabela__conteudo">40</td>
-                    </tr>
-                    <tr>
-                        <td class="campeonatos__tabela__conteudo">Copa do Mundo de Clubes</td>
-                        <td class="campeonatos__tabela__conteudo">Mundial</td>
-                        <td class="campeonatos__tabela__conteudo">SIM</td>
-                        <td class="campeonatos__tabela__conteudo">100</td>
-                    </tr>
-                    <tr>
-                        <td class="campeonatos__tabela__conteudo">Copa Rio</td>
-                        <td class="campeonatos__tabela__conteudo">Mundial</td>
-                        <td class="campeonatos__tabela__conteudo">NÃO</td>
-                        <td class="campeonatos__tabela__conteudo">50</td>
-                        <td class="campeonatos__tabela__botoes">
-                            <img class="editar__imagem" src="{% static 'assets/icone/var.png' %}" alt="Imagem do VAR">
-                            <p class="editar__texto">Edit</p>
-                        </td>
-                        <td class="campeonatos__tabela__botoes">
-                            <img class="deletar__imagem" src="{% static 'assets/icone/apito.png' %}" alt="Imagem de Apito">
-                            <p class="deletar__texto">Del</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="campeonatos__tabela__conteudo">Copa Toyota</td>
-                        <td class="campeonatos__tabela__conteudo">Mundial</td>
-                        <td class="campeonatos__tabela__conteudo">NÃO</td>
-                        <td class="campeonatos__tabela__conteudo">50</td>
-                    </tr>                        
+                    {% endfor %}                        
             </table>
-            <a class="link__novo__time" href="novo_campeonato.html"><button class="novo__time">Novo Campeonato</button></a>            
+            <a class="link__novo__time" href="{% url 'novo_campeonato' %}"><button class="novo__time">Novo Campeonato</button></a>            
         </section>
 {% endblock %}        
        

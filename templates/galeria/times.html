@@ -3,9 +3,19 @@
 {% block content %}
         <section class="galeria">
             <div class="galeria-times">
-                <img class="galeria-times__imagem" src="{{time.simbolo.url}}" alt="Simbolo do Time">
+                {% if time.simbolo %}
+                    <img class="card__simbolo" src="{{time.simbolo.url}}" alt="Simbolo do {{time.nome_curto}}">
+                {% else %}
+                    <img class="card__simbolo" src="{% static 'assets/imagens/galeria/times/not-found.png' %}" alt="Imagem de Not Found">
+                {% endif %}
                 <h1 class="galeria-times__titulo">{{time.nome_completo}}</h1>
                 <p class="galeria-times__texto">{{time.historico}}</p>
             </div>
+            {% if time.usuario == request.user %}
+                <div class="cadastro__botoes">
+                    <a class="link__editar__time" href="{% url 'editar_time' time.id %}"><button class="botoes__botao">Editar Time</button></a>
+                    <a class="link__editar__time" href="{% url 'deletar_time' time.id %}"><button class="botoes__botao" type="submit" style="background-color:crimson;">Deletar Time</button></a>
+                </div>  
+            {% endif %}
         </section>
 {% endblock %}

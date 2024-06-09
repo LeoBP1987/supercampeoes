@@ -11,6 +11,12 @@ class Categoria(models.Model):
         return self.categoria
     
 class Campeonato(models.Model):
+
+    OPCOES_PRINCIPAL = [
+        ("SIM","Sim"),
+        ("NÃO","Não"),
+    ]
+
     nome_campeonato = models.CharField(max_length=100, null=False, blank=False)
 
     categoria = models.ForeignKey(
@@ -20,7 +26,7 @@ class Campeonato(models.Model):
         blank=False,
         related_name='cat')
     
-    principal = models.BooleanField(default=False)
+    principal = models.CharField(max_length=5, choices=OPCOES_PRINCIPAL, default='')
 
     pontuacao = models.IntegerField(null=False, blank=False)
 
