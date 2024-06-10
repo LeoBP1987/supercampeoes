@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from galeria.models import Times
-from galeria.forms import TimeForms
+from galeria.models import Times, DeclararCampeao
+from galeria.forms import TimeForms, CampeoesForms
 from django.contrib import messages
 import logging
 
@@ -72,5 +72,67 @@ def deletar_time(request, time_id):
     messages.success(request, 'Deleção realizada com sucesso!')
 
     return redirect('index')
+
+def titulos(request, time_id):
+
+    time = Times.objects.get(id=time_id)
+    
+    titulos = DeclararCampeao.objects.filter(time=time)
+
+    return render(request, 'galeria/titulos.html', {'time':time, 'titulos':titulos})
+
+def novo_titulo(request, time_id):
+
+    time = Times.objects.get(id=time_id)
+
+    forms = CampeoesForms()
+
+    if request.method == 'POST':
+
+        forms = CampeoesForms(request.POST)
+
+        if forms.is_valid():
+            novo_titulo = forms.save(commit=False)
+            novo_titulo.time = time
+            novo_titulo.pontuacao = novo_titulo.quantidade * novo_titulo.campeonato.pontuacao
+            novo_titulo.save()
+            messages.success(request, 'Cadastro realizado com Sucesso!')
+            return redirect('index')
+        else:
+            messages.error(request, 'Erro ao cadastro. Tente novamente.')
+
+    return render(request, 'galeria/novo_titulo.html', {'forms':forms, 'time':time})
+
+def editar_titulo(request, titulo_id):
+
+    titulo = DeclararCampeao.objects.get(id=titulo_id)
+
+    forms = CampeoesForms(instance=titulo)
+
+    if request.method == 'POST':
+
+        forms = CampeoesForms(request.POST, instance=titulo)
+
+        if forms.is_valid():
+            titulo_editado = forms.save(commit=False)
+            titulo_editado.pontuacao = titulo_editado.quantidade * titulo_editado.campeonato.pontuacao
+            titulo_editado.save()
+            messages.success(request, 'Alteração realizada com Sucesso!')
+            return redirect('index')
+
+    return render(request, 'galeria/editar_titulo.html', {'forms':forms, 'titulo':titulo})
+
+def deletar_titulo(request, titulo_id):
+    
+    titulo = DeclararCampeao.objects.get(id=titulo_id)
+
+    titulo.delete()
+
+    messages.success(request, 'Deleção realizada com sucesso!')
+
+    return redirect('index')
+
+def ranking_geral(request):
+    return render(request, 'galeria/ranking_geral.html')
 
     

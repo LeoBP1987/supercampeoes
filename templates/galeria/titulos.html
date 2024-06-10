@@ -1,0 +1,46 @@
+{% extends 'galeria/partials/base_times.html' %}
+{% load static %}
+{% block content %}
+        <section class="galeria">
+            <div class="galeria-tb-times">
+                <img class="tb-times__imagem" src="{{time.simbolo.url}}" alt="Simbolo do {{time.nome_curto}}">
+                <table class="tb-times__tabela" border="1">
+                    <thead>
+                        <tr>
+                            <th class="tb-times__tabela__cabecalho">Titulos</th>
+                            <th class="tb-times__tabela__cabecalho">Categoria</th>
+                            <th class="tb-times__tabela__cabecalho">Quantidade</th>
+                            <th class="tb-times__tabela__cabecalho">Pontos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for titulo in titulos %}
+                        <tr>
+                            <td class="tb-times__tabela__conteudo">{{titulo.campeonato.nome_campeonato}}</td>
+                            <td class="tb-times__tabela__conteudo">{{titulo.campeonato.categoria}}</td>
+                            <td class="tb-times__tabela__conteudo">{{titulo.quantidade}}</td>
+                            <td class="tb-times__tabela__conteudo">{{titulo.pontuacao}}</td>
+                            {% if time.usuario == request.user %}
+                                <td class="tb-times__tabela__botoes">
+                                    <a  class="link__editar__campeonato" href="{% url 'editar_titulo' titulo.id %}">
+                                        <img class="editar__imagem" src="{% static 'assets/icone/var.png' %}" alt="Imagem do VAR">
+                                        <p class="editar__texto">Edit</p>
+                                    </a>
+                                </td>
+                                <td class="tb-times__tabela__botoes">
+                                    <a  class="link__editar__campeonato" href="{% url 'deletar_titulo' titulo.id %}">
+                                        <img class="deletar__imagem" src="{% static 'assets/icone/apito.png' %}" alt="Imagem de Apito">
+                                        <p class="deletar__texto">Del</p>
+                                    </a>
+                                </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% if time.usuario == request.user %}
+                    <a class="link__novo__time" href="{% url 'novo_titulo' time.id %}"><button class="novo__time">Novo Titulo</button></a>
+                {% endif %}
+            </div>
+        </section>
+{% endblock %}

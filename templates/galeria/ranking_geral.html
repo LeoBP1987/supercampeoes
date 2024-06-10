@@ -1,0 +1,53 @@
+{% extends 'partials/base_index.html' %}
+{% load static %}
+{% block content %}        
+        <section class="galeria">
+            <div class="galeria-rankings">
+                <h1 class="rankings__titulo">Ranking Geral</h1>
+                <table class="rankings__tabela" border="1">
+                    <thead>
+                        <tr>
+                            <th class="rankings__tabela__cabecalho">Posição</th>
+                            <th class="rankings__tabela__cabecalho">Time</th>
+                            <th class="rankings__tabela__cabecalho">Número de Pontos</th>
+                            <th class="rankings__tabela__cabecalho">Quantidade de Titulos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="rankings__tabela__conteudo">1º</td>
+                            <td class="rankings__tabela__conteudo">
+                                <div class="conteudo__time">
+                                    <img class="conteudo__time__imagem" src="./assets/imagens/galeria/times/logo-palmeiras.png" alt="Simbolo do Palmeiras">
+                                    Palmeiras
+                                </div>
+                            </td>
+                            <td class="rankings__tabela__conteudo">1120</td>
+                            <td class="rankings__tabela__conteudo">24</td>
+                        </tr>
+                        <tr>
+                            <td class="rankings__tabela__conteudo">2º</td>
+                            <td class="rankings__tabela__conteudo">
+                                <div class="conteudo__time">
+                                    <img class="conteudo__time__imagem" src="./assets/imagens/galeria/times/logo-corinthians.png" alt="Simbolo do Corinthians">
+                                    Corinthians
+                                </div>
+                            </td>
+                            <td class="rankings__tabela__conteudo">745</td>
+                            <td class="rankings__tabela__conteudo">14</td>
+                        </tr>
+                        <tr>
+                            <td class="rankings__tabela__conteudo">3º</td>
+                            <td class="rankings__tabela__conteudo">
+                                <div class="conteudo__time">
+                                    <img class="conteudo__time__imagem" src="./assets/imagens/galeria/times/logo-cruzeiro.png" alt="Simbolo do Cruzeiro">
+                                    Cruzeiro
+                                </div>
+                            </td>
+                            <td class="rankings__tabela__conteudo">550</td>
+                            <td class="rankings__tabela__conteudo">13</td>
+                        </tr>                        
+                </table>
+            </div>
+        </section>
+{% endblock %}

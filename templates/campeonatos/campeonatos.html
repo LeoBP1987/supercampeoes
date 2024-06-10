@@ -23,14 +23,14 @@
                         {% if campeonato.usuario == request.user %}
                         <td class="campeonatos__tabela__botoes">
                             <a  class="link__editar__campeonato" href="{% url 'editar_campeonato' campeonato.id %}">
-                            <img class="editar__imagem" src="{% static 'assets/icone/var.png' %}" alt="Imagem do VAR">
-                            <p class="editar__texto">Edit</p>
+                                <img class="editar__imagem" src="{% static 'assets/icone/var.png' %}" alt="Imagem do VAR">
+                                <p class="editar__texto">Edit</p>
                             </a>
                         </td>
                         <td class="campeonatos__tabela__botoes">
                             <a  class="link__editar__campeonato" href="{% url 'deletar_campeonato' campeonato.id %}">
-                            <img class="deletar__imagem" src="{% static 'assets/icone/apito.png' %}" alt="Imagem de Apito">
-                            <p class="deletar__texto">Del</p>
+                                <img class="deletar__imagem" src="{% static 'assets/icone/apito.png' %}" alt="Imagem de Apito">
+                                <p class="deletar__texto">Del</p>
                             </a>
                         </td>
                         {% endif %}

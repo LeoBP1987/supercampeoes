@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from usuarios.models import UsuariosCustomizados
+from campeonatos.models import Campeonato
 
 class Times(models.Model):
     nome_curto = models.CharField(max_length=50, null=False, blank=False)
@@ -16,6 +17,28 @@ class Times(models.Model):
         null=True,
         related_name='usu'
     )
+    titulos = models.ManyToManyField(
+        to=Campeonato,
+        through='DeclararCampeao'
+    )
 
     def __str__(self):
-        return self.nome_curto
+        return self.nome_curto    
+    
+class DeclararCampeao(models.Model):
+    time = models.ForeignKey(
+        to=Times,
+        on_delete=models.CASCADE,
+    )
+
+    campeonato = models.ForeignKey(
+        to=Campeonato,
+        on_delete=models.CASCADE,
+    )
+
+    quantidade = models.IntegerField(default=0)
+
+    pontuacao = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.time.nome_curto} ganhou {self.campeonato.nome_campeonato} {self.quantidade} vezes'
