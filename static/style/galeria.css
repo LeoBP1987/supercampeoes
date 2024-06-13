@@ -238,14 +238,6 @@ li {
     align-self: center;
 }
 
-.link__editar__time {
-    width: 60%;
-}
-
-.link__editar__campeonato {
-    text-decoration: none;
-}
-
 .novo__time {
     width: 100%;
     background: var(--cor-detalhes-secudaria);
@@ -287,6 +279,13 @@ li {
 .tb-times__tabela__botoes {
     width: 45px;
 }
+
+.mensagem__erro{
+    color: red;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
 
 
 

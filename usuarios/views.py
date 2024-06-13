@@ -40,15 +40,7 @@ def cadastro(request):
 
         if forms.is_valid():
             
-            if forms['senha'].value() != forms['confirma_senha'].value():
-                messages.error(request, 'As senhas informadas não conferem!')
-                return redirect('cadastro')
-            
             login = forms['login'].value()
-            
-            if UsuariosCustomizados.objects.filter(username=login).exists():
-                messages.error(request, 'Login de usuário já existe!')
-                return redirect('cadastro')
             
             nome_completo = forms['nome_completo'].value()
             email = forms['email'].value()

@@ -11,10 +11,15 @@
                     <label class="cadastro__label" for="id_for_field">{{field.label}}</label>
                     {{field}}
                 </div>
+                {% for error in field.errors %}
+                <div class="mensagem__erro">
+                    {{error}}
+                </div>
+                {% endfor %}
                 {% endfor %}
                 <div class="cadastro__botoes">
                     <button class="botoes__botao" type="submit">Enviar</button>
-                    <button class="botoes__botao" type="submit" style="background-color:crimson;">Cancelar</button>
+                    <button class="botoes__botao" type="submit" style="background-color:crimson;" onclick=window.location.href="{% url 'index' %}">Cancelar</button>
                 </div>
             </div>
             </form>

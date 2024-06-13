@@ -1,4 +1,6 @@
+from typing import Any
 from django import forms
+from usuarios.models import UsuariosCustomizados
 
 class LoginForms(forms.Form):
     login=forms.CharField(
@@ -97,3 +99,26 @@ class CadastroForms(forms.Form):
             }
         )
     )
+
+    def clean_login(self):        
+        nome = self.cleaned_data.get('login')
+
+        if nome:
+            nome = nome.strip()
+            if ' ' in nome:
+                raise forms.ValidationError('Espaços não são permitidos nos logins')
+            else:
+                if UsuariosCustomizados.objects.filter(username=nome).exists():
+                    raise forms.ValidationError('Este Login já está em uso.')
+                else:
+                    return nome
+            
+    def clean_confirma_senha(self):
+        senha = self.cleaned_data.get('senha')
+        confirma_senha = self.cleaned_data.get('confirma_senha')
+
+        if senha and confirma_senha:
+            if senha != confirma_senha:
+                raise forms.ValidationError('As senhas não conferem')
+            else:
+                return confirma_senha

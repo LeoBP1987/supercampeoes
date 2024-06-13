@@ -280,5 +280,12 @@ li {
     width: 45px;
 }
 
+.mensagem__erro{
+    color: red;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
 
 
