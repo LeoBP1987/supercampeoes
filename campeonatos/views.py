@@ -2,10 +2,34 @@ from django.shortcuts import render, redirect
 from campeonatos.models import Campeonato
 from campeonatos.forms import CampeonatoForms
 from django.contrib import messages
+from django.db.models import When, Case, IntegerField
+
+def ordenar_campeonatos(tabela, time):
+
+    if time == 0:
+        campeonatos = tabela.objects.all().annotate(
+            custom_order=Case(
+                When(categoria__categoria='Nacional', then=1),
+                When(categoria__categoria='Continental', then=2),
+                When(categoria__categoria='Mundial', then=3),
+                output_field=IntegerField()
+            )
+        ).order_by('custom_order')
+    else:
+        campeonatos = tabela.objects.filter(time=time).annotate(
+            custom_order=Case(
+                When(campeonato__categoria__categoria='Nacional', then=1),
+                When(campeonato__categoria__categoria='Continental', then=2),
+                When(campeonato__categoria__categoria='Mundial', then=3),
+                output_field=IntegerField()
+            )
+        ).order_by('custom_order')
+
+    return campeonatos
 
 def campeonatos(request):
 
-    campeonatos = Campeonato.objects.all()
+    campeonatos = ordenar_campeonatos(Campeonato, 0)
 
     return render(request, 'campeonatos/campeonatos.html', {'campeonatos':campeonatos})
 

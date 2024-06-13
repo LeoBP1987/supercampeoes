@@ -1,0 +1,37 @@
+{% extends 'galeria/partials/base_times.html' %}
+{% load static %}
+{% block content %}
+        <section class="galeria">
+            <div class="galeria-tb-times">
+                <img class="tb-times__imagem" src="{{time.simbolo.url}}" alt="Simbolo do {{time.nome_curto}}">
+                <table class="tb-times__tabela" border="1">
+                    <thead>
+                        <tr>
+                            <th class="tb-times__tabela__cabecalho">Ranking</th>
+                            <th class="tb-times__tabela__cabecalho">Posição</th>
+                        </tr>
+                    </thead>
+                    {% for time in lista %}
+                    <tbody>
+                        <tr>
+                            <td class="tb-times__tabela__conteudo">Geral</td>
+                            <td class="tb-times__tabela__conteudo">{{time.geral}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tb-times__tabela__conteudo">Nacional</td>
+                            <td class="tb-times__tabela__conteudo">{{time.nacional}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tb-times__tabela__conteudo">Continental</td>
+                            <td class="tb-times__tabela__conteudo">{{time.continental}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tb-times__tabela__conteudo">Mundial</td>
+                            <td class="tb-times__tabela__conteudo">{{time.mundial}}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+{% endblock %}

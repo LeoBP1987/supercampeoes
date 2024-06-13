@@ -1,9 +1,9 @@
-{% extends 'partials/base_index.html' %}
+{% extends 'galeria/partials/base_times.html' %}
 {% load static %}
 {% block content %}
         <section class="galeria">
             <h1 class="galeria-titulo">Cadastro de Novo Time</h1>
-            <form action="{% url 'editar_time' time_id %}" method="POST" enctype="multipart/form-data">
+            <form action="{% url 'editar_time' time.id %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="formulario-cadastro">
                     {% for field in forms.visible_fields %}
