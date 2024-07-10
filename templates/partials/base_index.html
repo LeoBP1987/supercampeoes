@@ -16,7 +16,7 @@
         <section class="header">
             <div class="header-logo-logado">
                 {% if user.is_authenticated %}
-                <p class="header-logado">{{user.username}} logado</p>
+                <p class="header-logado">{{user.username}} está logado</p>
                 {% endif %}        
                 <img class="header-logo" src="{% static 'assets/logo/logo.png' %}" alt="Imagem do logo do site">
             </div>
