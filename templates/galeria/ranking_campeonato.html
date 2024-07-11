@@ -1,0 +1,34 @@
+{% extends 'partials/base_index.html' %}
+{% load static %}
+{% block content %}        
+        <section class="galeria">
+            <div class="galeria-rankings">
+                <h1 class="rankings__titulo">Ranking Por Campeonato</h1>
+                <table class="rankings__tabela" border="1">
+                    <thead>
+                        <tr>
+                            <th class="rankings__tabela__cabecalho">Posição</th>
+                            <th class="rankings__tabela__cabecalho">Time</th>
+                            <th class="rankings__tabela__cabecalho">Número de Pontos</th>
+                            <th class="rankings__tabela__cabecalho">Quantidade de Titulos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for time in lista %}
+                        <tr>
+                            <td class="rankings__tabela__conteudo">{{time.posicao}}º</td>
+                            <td class="rankings__tabela__conteudo">
+                                <div class="conteudo__time">
+                                    <img class="conteudo__time__imagem" src="{{time.simbolo.url}}" alt="Simbolo do {{time.time}}">
+                                    {{time.time}}
+                                </div>
+                            </td>
+                            <td class="rankings__tabela__conteudo">{{time.pontuacao}}</td>
+                            <td class="rankings__tabela__conteudo">{{time.quantidade}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>                           
+                </table>
+            </div>
+        </section>
+{% endblock %}

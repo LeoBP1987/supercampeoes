@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from campeonatos.models import Campeonato
-from campeonatos.forms import CampeonatoForms
+from galeria.models import DeclararCampeao
+from campeonatos.forms import CampeonatoForms, RkCampeonatosForms
 from django.contrib import messages
 from django.db.models import When, Case, IntegerField
 
@@ -100,3 +101,48 @@ def deletar_campeonato(request, campeonato_id):
     messages.success(request, 'Deleção realizada com sucesso.')
 
     return redirect('index')
+
+def ranking_campeonato(request):
+
+    forms = RkCampeonatosForms()
+
+    if request.method == 'POST':
+
+        forms = RkCampeonatosForms(request.POST)
+
+        if forms.is_valid():
+
+            campeonato_escolhido = forms.cleaned_data['campeonato']
+
+            titulos = DeclararCampeao.objects.filter(campeonato__nome_campeonato=campeonato_escolhido)
+
+            dict_times = {}
+
+            for titulo in titulos:
+                if titulo.time.nome_curto not in dict_times:
+                    titulos_time = DeclararCampeao.objects.filter(time=titulo.time, campeonato__nome_campeonato=campeonato_escolhido)
+                    
+                    soma_pontos = 0
+                    for ttitulo in titulos_time:
+                        soma_pontos += ttitulo.pontuacao
+
+                    quantidade = 0
+                    for ttitulo in titulos_time:
+                        quantidade += ttitulo.quantidade    
+
+                    dict_times[titulo.time.nome_curto]={
+                        'time':titulo.time.nome_curto,
+                        'simbolo': titulo.time.simbolo,
+                        'quantidade': quantidade,
+                        'pontuacao': soma_pontos    
+                    }
+            lista_time = list(dict_times.values())
+
+            lista_time.sort(key=lambda x: x['pontuacao'], reverse=True)
+
+            for idx, time in enumerate(lista_time, start=1):
+                time['posicao']=idx
+
+            return render(request, 'galeria/ranking_campeonato.html', {'lista':lista_time})
+        
+    return render(request, 'galeria/rk_escolha_campeonato.html', {'forms':forms})
