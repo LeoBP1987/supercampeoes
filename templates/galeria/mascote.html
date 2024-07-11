@@ -1,0 +1,15 @@
+{% extends 'galeria/partials/base_times.html' %}
+{% load static %}
+{% block content %}
+        <section class="galeria">
+            <div class="galeria-times">
+                {% if time.foto_mascote and time.nome_mascote and time.descricao_mascote %}
+                    <img class="card__simbolo" src="{{time.foto_mascote.url}}" alt="Imagem do mascote do {{time.nome_curto}}">
+                    <h1 class="galeria-times__titulo">{{time.nome_mascote}}</h1>
+                    <p class="galeria-times__texto">{{time.descricao_mascote}}</p>
+                {% else %}
+                    <h1 class="galeria-times__titulo">MASCOTE NÃO CADASTRADO TOTALMENTE</h1>
+                {% endif %}
+            </div>
+        </section>
+{% endblock %}

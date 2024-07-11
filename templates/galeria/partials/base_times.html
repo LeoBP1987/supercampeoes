@@ -30,6 +30,12 @@
                 </a>
             </div>
             <div class="menu-lateral__item">
+                <a class="item__link" href="{% url 'mascote' time.id %}">
+                    <img class="item__imagem" src="{% static 'assets/icone/chuteira.png' %}" alt="Icone de Campo de Futebol">
+                    <h2 class="item__tituto">Mascote</h2>
+                </a>
+            </div>
+            <div class="menu-lateral__item">
                 <a class="item__link" href="{% url 'titulos' time.id %}">
                     <img class="item__imagem" src="{% static 'assets/icone/trofeu.png' %}" alt="Icone de Troféu">
                     <h2 class="item__tituto">Titulos</h2>

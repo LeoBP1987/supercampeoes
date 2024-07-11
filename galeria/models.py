@@ -21,6 +21,9 @@ class Times(models.Model):
         to=Campeonato,
         through='DeclararCampeao'
     )
+    foto_mascote = models.ImageField(upload_to='mascote/%Y/%m/%d', blank=True)
+    nome_mascote = models.CharField(max_length=50, blank=True)
+    descricao_mascote = models.TextField(blank=True)
 
     def __str__(self):
         return self.nome_curto    

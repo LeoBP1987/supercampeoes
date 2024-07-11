@@ -243,3 +243,9 @@ def ranking_posicoes(request, time_id):
 
     return render(request, 'galeria/ranking_posicoes.html', {'time':time, 'lista':lista_time})
 
+def mascote(request, time_id):
+
+    time = Times.objects.get(id=time_id)
+
+    return render(request, 'galeria/mascote.html', {'time':time})
+
