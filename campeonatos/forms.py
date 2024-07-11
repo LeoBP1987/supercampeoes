@@ -2,8 +2,6 @@ from typing import Any
 from django import forms
 from campeonatos.models import Campeonato
 
-
-
 class CampeonatoForms(forms.ModelForm):
     class Meta:
         model = Campeonato

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from galeria.models import Times, DeclararCampeao
-from galeria.forms import TimeForms, CampeoesForms
+from galeria.forms import TimeForms, CampeoesForms, EstadoForms
 from campeonatos.models import Categoria
 from django.contrib import messages
 from campeonatos.views import ordenar_campeonatos
@@ -249,3 +249,58 @@ def mascote(request, time_id):
 
     return render(request, 'galeria/mascote.html', {'time':time})
 
+def ranking_estado(request):
+    
+    forms = EstadoForms()
+
+    if request.method == 'POST':
+
+        forms = EstadoForms(request.POST)
+
+        if forms.is_valid():
+
+            estado_escolhido = forms.cleaned_data['estado']
+
+            lista_times = []
+
+            times = Times.objects.all()
+
+            for time in times:
+                if time.estado == estado_escolhido:
+                    lista_times.append(time)
+
+            titulos = DeclararCampeao.objects.none()
+
+            for time in lista_times:
+                titulos = titulos | DeclararCampeao.objects.filter(time=time)
+
+            dict_times = {}
+
+            for titulo in titulos:
+                if titulo.time.nome_curto not in dict_times:
+                    titulos_time = DeclararCampeao.objects.filter(time=titulo.time)
+                    
+                    soma_pontos = 0
+                    for ttitulo in titulos_time:
+                        soma_pontos += ttitulo.pontuacao
+
+                    quantidade = 0
+                    for ttitulo in titulos_time:
+                        quantidade += ttitulo.quantidade    
+
+                    dict_times[titulo.time.nome_curto]={
+                        'time':titulo.time.nome_curto,
+                        'simbolo': titulo.time.simbolo,
+                        'quantidade': quantidade,
+                        'pontuacao': soma_pontos    
+                    }
+            lista_time = list(dict_times.values())
+
+            lista_time.sort(key=lambda x: x['pontuacao'], reverse=True)
+
+            for idx, time in enumerate(lista_time, start=1):
+                time['posicao']=idx
+
+            return render(request, 'galeria/ranking_estado.html', {'lista':lista_time})
+        
+    return render(request, 'galeria/rk_escolha_estado.html', {'forms':forms})    

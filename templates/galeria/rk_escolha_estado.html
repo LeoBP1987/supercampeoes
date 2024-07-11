@@ -1,0 +1,22 @@
+{% extends 'partials/base_index.html' %}
+{% load static %}
+{% block content %}
+        <section class="galeria">
+            <h1 class="galeria-titulo">Ranking Por Estado</h1>
+            <form action="{% url 'ranking_estado' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="formulario-cadastro">
+                    {% for field in forms.visible_fields %}
+                    <div class="cadastro__campo">
+                        <label class="cadastro__label" for="id_for_field">{{field.label}}</label>
+                        {{field}}
+                    </div>
+                    {% endfor %}
+                    <div class="cadastro__botoes">
+                        <button class="botoes__botao" type="submit">Enviar</button>
+                        <button class="botoes__botao" type="submit" style="background-color:crimson;" onclick=window.location.href="{% url 'index' %}">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+{% endblock %}

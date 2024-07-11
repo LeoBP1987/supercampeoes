@@ -29,5 +29,17 @@
                         <h2 class="rk-card__titulo">Ranking Mundial</h2>
                     </a>
                 </li>
+                <li>
+                    <a class="rk-cards__card" href="{% url 'ranking_estado' %}">
+                        <img class="rk-card__simbolo" src="{% static 'assets/imagens/galeria/ranking/ranking_por_estado.jpg' %}" alt="Imagem capa Ranking Por Estado">
+                        <h2 class="rk-card__titulo">Ranking Por Estado</h2>
+                    </a>
+                </li>
+                <li>
+                    <a class="rk-cards__card" href="{% url 'ranking_mundial' %}">
+                        <img class="rk-card__simbolo" src="{% static 'assets/imagens/galeria/ranking/ranking_por_campeonato.jpg' %}" alt="Imagem capa Ranking Por Campeonato">
+                        <h2 class="rk-card__titulo">Ranking Por Campeonato</h2>
+                    </a>
+                </li>
         </section>
 {% endblock %}

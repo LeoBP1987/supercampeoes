@@ -29,3 +29,19 @@ class CampeoesForms(forms.ModelForm):
             'campeonato': forms.Select(attrs={'class':'cadastro__input'}),
             'quantidade': forms.TextInput(attrs={'class':'cadastro__input'})
         }
+
+def listar_estados():
+    times = Times.objects.all()
+
+    estados = []
+
+    for time in times:
+        if (time.estado, time.estado) not in estados:
+            estados.append((time.estado, time.estado))
+
+    return estados
+
+estados = listar_estados()
+
+class EstadoForms(forms.Form):
+    estado = forms.ChoiceField(choices=estados, label='Selecione o Estado que deseja Rankear', widget=forms.Select(attrs={'class':'cadastro__input'}))
