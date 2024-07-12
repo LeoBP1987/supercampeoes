@@ -1,0 +1,27 @@
+{% extends 'partials/base_index.html' %}
+{% load static %}
+{% block content %}
+        <section class="galeria">
+            <img class="galeria-banner" src="{% static 'assets/imagens/banner_futebol.png' %}" alt="Banner da página">
+            <h1 class="galeria-titulo">Galeria de Times</h1>
+            <ul class="galeria-cards">
+                {% if times %}
+                {% for time in times %}
+                <li>
+                    <a class="cards__card" href="{% url 'times' time.id %}">
+                        {% if time.simbolo %}
+                            <img class="card__simbolo" src="{{time.simbolo.url}}" alt="Simbolo do {{time.nome_curto}}">
+                        {% else %}
+                            <img class="card__simbolo" src="{% static 'assets/imagens/galeria/times/not-found.png' %}" alt="Imagem de Not Found">
+                        {% endif %}
+                        <h2 class="card__titulo">{{time.nome_curto}}</h2>
+                        <p class="card__texto">{{time.estado}}</p>
+                    </a>
+                </li>
+                {% endfor %}
+                {% else %}
+                <h2>Não Há Times Cadastrados no Momento</h2>
+                {% endif %}
+            </ul>
+        </section>
+{% endblock %}

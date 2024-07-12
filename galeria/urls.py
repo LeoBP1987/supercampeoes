@@ -2,7 +2,7 @@ from django.urls import path
 from galeria.views import index, times, ranking, meus_times, novo_time, \
       editar_time, deletar_time, titulos, novo_titulo, editar_titulo, \
       deletar_titulo, ranking_geral, ranking_nacional, ranking_continental, \
-      ranking_mundial, ranking_posicoes, mascote, ranking_estado
+      ranking_mundial, ranking_posicoes, mascote, ranking_estado, buscar
 
 urlpatterns = [
     path('', index, name='index'),
@@ -22,5 +22,6 @@ urlpatterns = [
     path('ranking_mundial/', ranking_mundial, name='ranking_mundial'),
     path('ranking_posicoes/<int:time_id>', ranking_posicoes, name='ranking_posicoes'),
     path('mascote/<int:time_id>', mascote, name='mascote'),
-    path('ranking_estado/', ranking_estado, name='ranking_estado')
+    path('ranking_estado/', ranking_estado, name='ranking_estado'),
+    path('buscar/', buscar, name='buscar')
 ]

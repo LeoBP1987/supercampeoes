@@ -303,4 +303,14 @@ def ranking_estado(request):
 
             return render(request, 'galeria/ranking_estado.html', {'lista':lista_time})
         
-    return render(request, 'galeria/rk_escolha_estado.html', {'forms':forms})    
+    return render(request, 'galeria/rk_escolha_estado.html', {'forms':forms})
+
+def buscar(request):
+    times = Times.objects.all().order_by('?')
+
+    if 'buscar' in request.GET:
+        nome_a_buscar = request.GET['buscar']
+        if nome_a_buscar:
+            times = Times.objects.filter(nome_completo__icontains=nome_a_buscar)
+
+    return render(request, 'galeria/buscar.html', {'times':times})

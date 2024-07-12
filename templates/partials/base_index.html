@@ -26,8 +26,12 @@
             </div>
             {% endfor %}
             <div class="header-busca">
-                <input class="busca__pesquisa" type="text" placeholder="O que você deseja procurar?">
-                <img class="busca__fundo" src="{% static 'assets/icone/search.png' %}" alt="Icone de Lupa">
+                <form action="{% url 'buscar' %}">
+                    <input class="busca__pesquisa" type="text" name="buscar" placeholder="O que você deseja procurar?">
+                    <button type="submit">
+                        <img class="busca__fundo" src="{% static 'assets/icone/search.png' %}" alt="Icone de Lupa">
+                    </button>                        
+                </form>
             </div>
         </section>
         <section class="menu-lateral">
